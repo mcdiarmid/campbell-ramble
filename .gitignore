@@ -1,0 +1,12 @@
+# Compiled
+*.so
+*.dll
+*.exe
+*.out
+*.app
+
+# CMake
+build/**/*
+**/CMakeCache.txt
+**/CMakeFiles/
+
