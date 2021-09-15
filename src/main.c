@@ -10,10 +10,12 @@
 #include <GL/freeglut.h>
 #define WINDOW_TITLE_PREFIX "Test window"
 
+
 // Prototypes
-void ResizeFunction(int, int);
+void ResizeFunction(int w, int h);
 void RenderFunction(void);
-int InitializeWindow(int, int, int, char*[]);
+int InitializeWindow(int w, int h, int argc, char* argv[]);
+
 
 // Functions
 void ResizeFunction(int width, int height)
@@ -88,7 +90,7 @@ int main(int argc, char* argv[])
         "INFO: Window Handle: %d\n", 
         window_handle
     );
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(1.0f, 0.75f, 1.0f, 0.0f);
     glutMainLoop();
     exit(EXIT_SUCCESS);
 }
