@@ -10,3 +10,5 @@ build/**/*
 **/CMakeCache.txt
 **/CMakeFiles/
 
+# IDE
+.vscode/*.log

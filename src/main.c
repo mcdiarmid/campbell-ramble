@@ -14,7 +14,8 @@
 // Prototypes
 void ResizeFunction(int w, int h);
 void RenderFunction(void);
-int InitializeWindow(int w, int h, int argc, char* argv[]);
+int prog_glut_window_init(int w, int h, int argc, char* argv[]);
+void prog_glew_init(void);
 
 
 // Functions
@@ -32,7 +33,7 @@ void RenderFunction(void)
 }
 
 
-int InitializeWindow(
+int prog_glut_window_init(
     int window_width,
     int window_height,
     int argc, 
@@ -60,6 +61,27 @@ int InitializeWindow(
         fprintf(stderr, "ERROR: creating new rendering window\n.");
         exit(EXIT_FAILURE);
     }
+    glutReshapeFunc(ResizeFunction);
+    glutDisplayFunc(RenderFunction);
+
+    return window_handle;
+}
+
+
+void prog_glew_init(void)
+{
+    GLenum GlewInitResult = glewInit();
+
+    if (GlewInitResult != GLEW_OK)
+    {
+        fprintf(
+            stderr,
+            "ERROR: %s\n",
+            glewGetErrorString(GlewInitResult)
+        );
+        exit(EXIT_FAILURE);
+    }
+
 #ifdef DEBUG
     fprintf(
         stdout, 
@@ -67,10 +89,8 @@ int InitializeWindow(
         glGetString(GL_VERSION)
     );
 #endif
-    glutReshapeFunc(ResizeFunction);
-    glutDisplayFunc(RenderFunction);
 
-    return window_handle;
+    glClearColor(1.0f, 0.75f, 1.0f, 0.0f);
 }
 
 
@@ -79,7 +99,7 @@ int main(int argc, char* argv[])
     int window_width = 800;
     int window_height = 600;
     
-    int window_handle = InitializeWindow(
+    int window_handle = prog_glut_window_init(
         window_width,
         window_height,
         argc,
@@ -90,7 +110,7 @@ int main(int argc, char* argv[])
         "INFO: Window Handle: %d\n", 
         window_handle
     );
-    glClearColor(1.0f, 0.75f, 1.0f, 0.0f);
+    prog_glew_init();
     glutMainLoop();
     exit(EXIT_SUCCESS);
 }

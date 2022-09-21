@@ -4,4 +4,4 @@ GLLIBS = -lGL -lGLEW -lglut
 
 all:
 	@echo "Making"
-	$(CC) $(CFLAGS) main.c -o windowtest.out $(GLLIBS)
+	$(CC) $(CFLAGS) src/main.c -o bin/windowtest.out $(GLLIBS)
