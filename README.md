@@ -11,3 +11,6 @@ Currently running arch-based EndeavourOS and using `gcc` (version 11.1.0) to com
 ```bash
 sudo pacman -S glew freeglut
 ```
+
+## Goals
+
